@@ -1,0 +1,233 @@
+/*============================================================================
+
+  TABLE OF CONTENTS
+
+==============================================================================*/
+
+/**
+ * CSS01 - General
+ * CSS02 - Mixins
+ * CSS03 - Typography
+ * CSS04 - Header & Navigation
+ * CSS05 - Banner
+ * CSS06 - Blocks
+ * CSS07 - Footer
+ * CSS08 - Helpers
+**/
+
+/*============================================================================
+
+  CSS01 - General
+
+==============================================================================*/
+
+/*  Resets  */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  backface-visibility: hidden;
+}
+button {
+  all: unset;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/*  Color Scheme */
+$lightGreen: #25AA5B;
+$green: #0B9444;
+$darkGreen: #017932;
+$beige: #FCC88E;
+
+
+/*============================================================================
+
+  CSS02 - Mixins
+
+==============================================================================*/
+
+@mixin fade-link {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  &:hover {
+    opacity: .5;
+  }
+}
+
+/*============================================================================
+
+  CSS04 - Header & Navigation
+
+==============================================================================*/
+
+img#banner {
+  @include fade-link;
+}
+
+#navigation-top {
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  .social-links {
+    height: 40px;
+    p {
+      margin: 0;
+      display: inline-block;
+      font-family: Roboto Slab;
+      color: white;
+      font-size: 16px;
+      line-height: 38px;
+      font-weight: 600;
+    }
+  }
+  #main-navigation {
+    background: white;
+    border-bottom: 3px solid $green;
+    text-align: center;
+    ul {
+      padding-left: 24px;
+      padding-right: 24px;
+      li {
+        margin: 0 24px;
+        display: inline-block;
+        line-height: 42px;
+        @include fade-link;
+        &.active-link a {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  #banner-wrapper {
+    margin-right: 0 !important;
+    img#banner {
+      height: 32px;
+    }
+  }
+  .horizontal-navigation-bar {  
+    padding: 9px 10px;
+    display: block;
+  }
+  .social-links, #main-navigation  ul {
+    display: none !important;
+  }
+}
+
+#mobile-navigation {
+  position: fixed;
+  top: 50px;
+  z-index: 999;
+  padding: 0;
+  background: url('https://static1.squarespace.com/static/59936f8e6b8f5b8a32d76c22/59bc0db86f4ca32f36fcc628/59bc0e164c0dbfe6607cf12b/1505496600627/lowcountry-creamery-banner-index.jpg?format=2500w');
+  background-size: cover;
+  #mobile-navigation-title {
+    background: white;
+    padding: 1em 0;
+    a {
+      color: transparent;
+      pointer-events: none;
+    }
+  }
+  #mobile-navigation-label {
+    background: transparent;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  &.sqs-mobile-nav-open {
+    height: 100vh;
+  }
+}
+
+/*============================================================================
+
+  CSS05 - Banner
+
+==============================================================================*/
+
+#banner-area-wrapper {
+  margin-top: 112px;
+  display: table;
+  width: 100vw;
+  height: calc(100vh - 114px);
+  min-height: 500px;
+  background: url('https://static1.squarespace.com/static/59936f8e6b8f5b8a32d76c22/59bc0db86f4ca32f36fcc628/59bc0e164c0dbfe6607cf12b/1505496600627/lowcountry-creamery-banner-index.jpg?format=2500w');
+  background-size: cover;
+  background-position: bottom center;
+  background-attachment: fixed;
+  #banner-area {
+    padding: 0;
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    img {
+      margin-top: -4vw;
+      width: 40vw;
+      min-width: 300px;
+      max-width: 400px;
+    }
+    #page-title {
+      position: relative;
+      top: -5.6vw;
+      font-size: 1.6vw;
+      i {
+        margin: 0 .5vw;
+      }
+      @media (min-width: 1000px) {
+        top: -56px;
+        font-size: 16px;
+        i {
+          margin: 0 5px;
+        }
+      }
+      @media (max-width: 768px) {
+        top: -43px;
+        font-size: 13px;
+        i {
+          margin: 0 2px;
+        }
+      }
+    }
+    #scroll-down {
+      all: unset;
+      width: 42px;
+      height: 42px;
+      background: $green;
+      box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.25);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      &:hover {
+        cursor: pointer;
+        background: $darkGreen;
+      }
+    }
+  }
+}
+#banner-footer {
+  background: #0b9444;
+  border-top: 2px solid white;
+  padding: 14px 24px;
+  h2 {
+    margin: 0;
+    color: white;
+    font-size: 2.2vw;
+    text-align: center;
+    span {
+      color: $beige;
+    }
+    @media (min-width: 1000px) {
+      font-size: 22px;
+    }
+    @media (max-width: 768px) {
+      font-size: 17px;
+    }
+  }
+}

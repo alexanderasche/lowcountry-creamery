@@ -16,6 +16,7 @@
 		</div> <!-- canvas-wrapper -->
 
 		{squarespace-footers}
+		<squarespace:script src="bundle.js" />
 
 	</body>
 </html>

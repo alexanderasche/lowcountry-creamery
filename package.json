@@ -1,0 +1,46 @@
+{
+  "name": "lowcountry-creamery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "server": "squarespace-server https://dev-lowcountry-creamery.squarespace.com --auth",
+    "clean:css": "rm ./styles/styles.css",
+    "scss": "node-sass --output-style compressed --include-path scss ./styles/styles.scss ./styles/styles.css",
+    "autoprefixer": "postcss --use autoprefixer -o ./styles/styles.css ./styles/styles.css",
+    "build:css": "npm run clean:css && npm run scss && npm run autoprefixer",
+    "watch:scss": "nodemon -e ./styles/scss -x 'npm run build:css'",
+    "clean:js": "rm ./scripts/bundle.js",
+    "build:js": "npm run clean:js && browserify ./scripts/main.js --o ./scripts/bundle.js -t [ babelify --presets [ es2015 ] ] && uglifyjs ./scripts/bundle.js --compress --mangle -o ./scripts/bundle.js",
+    "watch:js": "nodemon -e ./scripts/main.js -x 'npm run build:js'",
+    "watch": "npm run watch:scss && npm run watch:js",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev-lowcountry-creamery.squarespace.com/template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^7.1.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-latest": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "css-loader": "^0.28.5",
+    "html-webpack-plugin": "^2.30.1",
+    "nodemon": "^1.11.0",
+    "postcss": "^6.0.9",
+    "postcss-cli": "^4.1.0",
+    "uglify-js": "^3.0.27",
+    "watch": "^1.0.2",
+    "watchify": "^3.9.0"
+  }
+}
